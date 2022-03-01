@@ -23,7 +23,7 @@ Un active response es un evento que se ejecutara cuando se active una serie de c
 
 
 #### Regla para bloquear una ip que haga tres intentos fallidos por el protocolo ssh.
-Colocamos este codigo en el archivo /var/ossec/etc/ossec.conf
+Colocamos este comando en el archivo /var/ossec/etc/ossec.conf
 ```
 <command>
     <name>firewall-drop</name> 
@@ -31,4 +31,13 @@ Colocamos este codigo en el archivo /var/ossec/etc/ossec.conf
     <expect>srcip</expect>
     <timeout_allowed>yes</timeout_allowed>
 </command>
+```
+Y luego colocamos este active responsive
+```
+<active-response>
+    <command>firewall-drop</command>
+    <location>local</location>
+    <rules_id>2502</rules_id>
+    <timeout>1800</timeout>
+</active-response>
 ```
